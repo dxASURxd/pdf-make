@@ -15,4 +15,14 @@ export class BasicReportsController {
     pdfDoc.pipe(response);
     pdfDoc.end();
   }
+
+  @Get('employment-letter')
+  async employmentLetter(@Res() response: Response) {   // Basado en el response, establecemos la respuesta como nuestro PDF
+    const pdfDoc = this.basicReportsService.employmentLetter();
+
+    response.setHeader('Content-Type', 'application/pdf');
+    pdfDoc.info.Title = 'Holamundo.pdf'
+    pdfDoc.pipe(response);
+    pdfDoc.end();
+  }
 }
